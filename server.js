@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const todoRoutes = express.Router();
-const PORT = 4000 || process.env.PORT;
+app.set('PORT', process.env.PORT || 7777);
 let Todo = require('./todos.model');
 app.use(cors());
 app.use(bodyParser.json());
@@ -56,6 +56,6 @@ todoRoutes.route('/add').post(function(req, res) {
         });
 });
 app.use('/todos', todoRoutes);
-app.listen(PORT, function() {
-    console.log("Server is running on Port: " + PORT);
+app.listen(app.get('PORT'), function() {
+    console.log("Server is running on Port: " + app.get('PORT'));
 });
